@@ -1,0 +1,49 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cl.pkto.core.mappers.UserMapper">
+    <resultMap id="UserResultMap" type="User">
+        <id column="id" property="id" />
+        <result column="nick" property="nick" />
+        <result column="friendCode" property="friendCode" />
+    </resultMap>
+
+    <select id="getAll" resultMap="UserResultMap">
+        select
+          id
+          ,nick
+          ,friendCode
+        from users
+    </select>
+
+    <select id="getById" resultMap="UserResultMap" parameterType="java.lang.Long">
+        select
+          id
+          ,nick
+          ,friendCode
+        from users
+        where id = #{id}
+    </select>
+
+    <insert id="save" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+        insert into users(
+          nick
+          ,friendCode
+        ) values(
+          #{nick}
+          ,#{friendCode}
+        )
+    </insert>
+
+    <update id="update" parameterType="User">
+        update users
+        set nick = #{nick}
+        ,friendCode = #{friendCode}
+        where id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        delete from users
+        where id = #{id}
+    </delete>
+</mapper>
