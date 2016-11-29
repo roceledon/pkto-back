@@ -19,7 +19,7 @@
         <package name="cl.pkto.common.ms.domain"/>
     </typeAliases>
     <environments default="development">
-        <environment id="development">
+        <environment id="develop">
             <transactionManager type="JDBC"/>
             <!--  connecting to Local MySql -->
             <dataSource type="POOLED">
@@ -35,8 +35,8 @@
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.jdbc.Driver"/>
                 <property name="url" value="jdbc:mysql://localhost:3306/pkmn_tournament"/>
-                <property name="username" value="asdasd"/>
-                <property name="password" value="asdasd"/>
+                <property name="username" value="iUxOIr4dZluh"/>
+                <property name="password" value="s1TgPwOIHenYMOsR5Myk"/>
             </dataSource>
         </environment>
     </environments>

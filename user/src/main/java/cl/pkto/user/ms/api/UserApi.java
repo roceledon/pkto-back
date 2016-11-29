@@ -28,7 +28,6 @@ public interface UserApi {
     @RequestMapping(value = BASE_URI, produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.PUT)
     ResponseEntity<User> update(@RequestBody User user);
 
-    //@RequestMapping(value = BASE_URI, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
     @RequestMapping(value = BASE_URI, produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
     ResponseEntity<User> save(@RequestBody User user);
 }

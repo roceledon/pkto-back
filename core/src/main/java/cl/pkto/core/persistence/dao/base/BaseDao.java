@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
  * Created by Bennu on 29-11-2016.
  */
 public class BaseDao {
-    private static final SqlSessionFactory sqlSessionFactory = MyBatisConnectionFactory.getSqlSessionFactory();
+    private static final SqlSessionFactory sqlSessionFactory = MyBatisConnectionFactory.getInstance().getSqlSessionFactory();
 
     protected static SqlSession openSession(){
         return sqlSessionFactory.openSession();

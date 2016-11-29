@@ -3,10 +3,10 @@ package cl.pkto.core.persistence.factory;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ResourceBundle;
 
 /**
  * Created by Bennu on 29-11-2016.
@@ -14,12 +14,17 @@ import java.io.Reader;
 public class MyBatisConnectionFactory {
     private static SqlSessionFactory sqlSessionFactory;
 
-    @Value("${myBatis.env}")
-    private static String env;
+    private static MyBatisConnectionFactory instance = new MyBatisConnectionFactory();
 
-    static {
+    public static MyBatisConnectionFactory getInstance() {
+        return instance;
+    }
+
+    private MyBatisConnectionFactory(){
         try {
-            String resource = "mybatis-config.xml";
+            ResourceBundle resourceBundle = ResourceBundle.getBundle("mybatisConfig");
+            String env = resourceBundle.getString("mybatis.env").trim();
+            String resource = resourceBundle.getString("mybatis.file").trim();
             Reader reader = Resources.getResourceAsReader(resource);
 
             if (sqlSessionFactory == null) {
@@ -29,7 +34,8 @@ public class MyBatisConnectionFactory {
             iOException.printStackTrace();
         }
     }
-    public static SqlSessionFactory getSqlSessionFactory() {
+
+    public SqlSessionFactory getSqlSessionFactory() {
         return sqlSessionFactory;
     }
 }
