@@ -10,7 +10,7 @@ public interface BaseMapper<T> {
 
     T getById(Long id);
 
-    Long save(T obj);
+    Object save(T obj);
 
     void update(T obj);
 

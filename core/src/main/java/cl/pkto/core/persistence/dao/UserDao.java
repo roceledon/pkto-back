@@ -44,17 +44,17 @@ public class UserDao extends BaseDao implements UserMapper {
     }
 
     @Override
-    public Long save(User user) {
-        Long id = null;
+    public User save(User user) {
         session = openSession();
 
         try {
-            id = (long) session.insert("saveUser", user);
+            session.insert("saveUser", user);
         } finally {
+            session.commit();
             session.close();
         }
 
-        return id;
+        return user;
     }
 
     @Override
@@ -63,6 +63,7 @@ public class UserDao extends BaseDao implements UserMapper {
         try {
             session.update("updateUser",user);
         } finally {
+            session.commit();
             session.close();
         }
     }
@@ -73,6 +74,7 @@ public class UserDao extends BaseDao implements UserMapper {
         try {
             session.delete("deleteUser",id);
         } finally {
+            session.commit();
             session.close();
         }
     }

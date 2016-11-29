@@ -27,7 +27,7 @@ public class UserBusiness {
         return userDao.getAll();
     }
 
-    public Long saveUser(User user) {
+    public User saveUser(User user) {
         UserDao userDao = AppFactory.getUserDao();
         return userDao.save(user);
     }

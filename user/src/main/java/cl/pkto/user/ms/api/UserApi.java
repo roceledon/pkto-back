@@ -20,7 +20,7 @@ public interface UserApi {
     ResponseEntity<List<User>> getAll();
 
     @RequestMapping(value = BASE_URI + "/{id}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.DELETE)
-    void delete(@PathVariable("id") Long id);
+    ResponseEntity delete(@PathVariable("id") Long id);
 
     @RequestMapping(value = BASE_URI + "/{id}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
     ResponseEntity<User> getById(@PathVariable("id") Long id);

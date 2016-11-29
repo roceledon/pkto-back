@@ -36,12 +36,12 @@ public class UserApiController implements UserApi {
 
     @Override
     public ResponseEntity<User> save(@RequestBody User user) {
-        UserBusiness.getInstance().saveUser(user);
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        return new ResponseEntity<>(UserBusiness.getInstance().saveUser(user), HttpStatus.OK);
     }
 
     @Override
-    public void delete(@PathVariable("id") Long id) {
+    public ResponseEntity delete(@PathVariable("id") Long id) {
         UserBusiness.getInstance().deleteUser(id);
+        return new ResponseEntity<>(HttpStatus.OK.value(),HttpStatus.OK);
     }
 }
