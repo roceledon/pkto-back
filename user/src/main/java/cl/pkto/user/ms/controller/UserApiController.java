@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -31,12 +30,12 @@ public class UserApiController implements UserApi {
 
     @Override
     public ResponseEntity<User> update(@RequestBody User user) {
-        UserBusiness.getInstance().saveUser(user);
+        UserBusiness.getInstance().updateUser(user);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<User> save(@RequestBody User user, HttpServletRequest request) {
+    public ResponseEntity<User> save(@RequestBody User user) {
         UserBusiness.getInstance().saveUser(user);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
