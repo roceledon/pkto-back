@@ -1,4 +1,4 @@
-package cl.pkto.persistence.exclusion;
+package cl.pkto.core.persistence.exclusion;
 
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
