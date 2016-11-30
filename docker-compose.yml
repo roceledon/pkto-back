@@ -1,24 +1,25 @@
 version: "2"
 
 services:
-  mongo:
-    image: mongo:2.6.12
+  mysql:
+    image: mysql:5.6
     ports:
-    - "27017:27017"
+    - "3306:3306"
     volumes:
-    - mongo-data:/data/db
-    - mongo-config:/data/configdb
+    - mysql-data: /var/lib/mysql
+    environment:
+    - MYSQL_ROOT_PASSWORD: 4iFBkLer9LQyXñfNkgOD
+    - MYSQL_DATABASE: pkmn_tournament
+    - MYSQL_USER: iUxOIr4dZluh
+    - MYSQL_PASSWORD: s1TgPwOIHenYMOsR5Myk
 
   user:
     build: user/target/docker
     ports:
     - "8000:8080"
     links:
-    - mongo
+    - mysql
 
 volumes:
-  mongo-data:
-    external: false
-
-  mongo-config:
+  mysql-data:
     external: false
