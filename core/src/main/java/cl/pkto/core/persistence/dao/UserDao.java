@@ -61,7 +61,7 @@ public class UserDao extends BaseDao implements UserMapper {
     public void update(User user) {
         session = openSession();
         try {
-            session.update("updateUser",user);
+            session.update("updateUser", user);
         } finally {
             session.commit();
             session.close();
@@ -77,5 +77,20 @@ public class UserDao extends BaseDao implements UserMapper {
             session.commit();
             session.close();
         }
+    }
+
+    @Override
+    public User findUserLoginByEmail(String email) {
+        User account = null;
+
+        session = openSession();
+        try {
+            account = session.selectOne("findUserByEmail",email);
+        } finally {
+            session.commit();
+            session.close();
+        }
+
+        return account;
     }
 }

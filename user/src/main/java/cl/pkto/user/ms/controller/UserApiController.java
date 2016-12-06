@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by Bennu on 27-11-2016.
  */
-@RequestMapping("/api/"+"${api.version.url}"+"/")
+@RequestMapping("${api.version.url}/${api.path}")
 @RestController
 public class UserApiController implements UserApi {
     @Override

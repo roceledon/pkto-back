@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cl.pkto.back</groupId>
-    <artifactId>user</artifactId>
+    <artifactId>auth</artifactId>
     <version>0.0.1</version>
     <packaging>jar</packaging>
-    <name>user</name>
-    <description>user-ms</description>
+    <name>auth</name>
+    <description>auth-ms</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -78,7 +78,7 @@
                         <configuration>
                             <target name="copy">
                                 <copy file="src/main/docker/Dockerfile" tofile="${project.build.directory}/docker/Dockerfile" />
-                                <copy file="target/user-0.0.1.jar" tofile="${project.build.directory}/docker/user-0.0.1.jar" />
+                                <copy file="target/auth-0.0.1.jar" tofile="${project.build.directory}/docker/auth-0.0.1.jar" />
                             </target>
                         </configuration>
                         <goals>

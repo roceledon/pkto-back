@@ -41,4 +41,9 @@ public class UserBusiness {
         UserDao userDao = AppFactory.getUserDao();
         userDao.delete(id);
     }
+
+    public User findUserLoginByEmail(String email){
+        UserDao userDao = AppFactory.getUserDao();
+        return userDao.findUserLoginByEmail(email);
+    }
 }

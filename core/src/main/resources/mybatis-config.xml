@@ -19,7 +19,7 @@
         <package name="cl.pkto.common.ms.domain"/>
     </typeAliases>
     <environments default="development">
-        <environment id="develop">
+        <environment id="development">
             <transactionManager type="JDBC"/>
             <!--  connecting to Local MySql -->
             <dataSource type="POOLED">
