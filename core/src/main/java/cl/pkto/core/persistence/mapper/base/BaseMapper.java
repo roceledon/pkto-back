@@ -10,9 +10,9 @@ public interface BaseMapper<T> {
 
     T getById(Long id);
 
-    Object save(T obj);
+    T save(T t);
 
-    void update(T obj);
+    void update(T t);
 
     void delete(Long id);
 }

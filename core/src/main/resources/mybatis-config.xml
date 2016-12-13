@@ -19,7 +19,7 @@
         <package name="cl.pkto.common.ms.domain"/>
     </typeAliases>
     <environments default="development">
-        <environment id="develop">
+        <environment id="development">
             <transactionManager type="JDBC"/>
             <!--  connecting to Local MySql -->
             <dataSource type="POOLED">
@@ -34,7 +34,7 @@
             <!--  connecting to Production MySql -->
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/pkmn_tournament"/>
+                <property name="url" value="jdbc:mysql://192.168.99.100:3306/pkmn_tournament"/>
                 <property name="username" value="iUxOIr4dZluh"/>
                 <property name="password" value="s1TgPwOIHenYMOsR5Myk"/>
             </dataSource>
@@ -42,5 +42,6 @@
     </environments>
     <mappers>
         <mapper resource="cl/pkto/mapper/UserMapper.xml"/>
+        <mapper resource="cl/pkto/mapper/AuthorityMapper.xml"/>
     </mappers>
 </configuration>

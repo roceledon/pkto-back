@@ -4,10 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cl.pkto.mapper.UserMapper">
 
-    <resultMap id="UserResultMap" type="User">
+    <resultMap id="UserResultMap" type="cl.pkto.common.ms.domain.User">
         <result column="id" property="id" />
         <result column="nick" property="nick" />
         <result column="friendCode" property="friendCode" />
+        <result column="email" property="email" />
+        <result column="password" property="password" />
+        <result column="enabled" property="enabled" />
+        <result column="lastPasswordResetDate" property="lastPasswordResetDate" />
     </resultMap>
 
     <select id="getAllUser" resultMap="UserResultMap">
@@ -15,6 +19,10 @@
           id
           ,nick
           ,friendCode
+          ,email
+          ,password
+          ,enabled
+          ,lastPasswordResetDate
         from users
     </select>
 
@@ -23,24 +31,54 @@
           id
           ,nick
           ,friendCode
+          ,email
+          ,password
+          ,enabled
+          ,lastPasswordResetDate
         from users
         where id = #{id}
     </select>
 
-    <insert id="saveUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+    <insert id="saveUser" parameterType="cl.pkto.common.ms.domain.User" useGeneratedKeys="true" keyProperty="id">
         insert into users(
           nick
           ,friendCode
+          ,email
+          ,password
+          ,enabled
+          ,lastPasswordResetDate
         ) values(
           #{nick}
           ,#{friendCode}
+          ,#{email}
+          ,#{password}
+          ,#{enabled}
+          ,#{lastPasswordResetDate}
         )
     </insert>
 
-    <update id="updateUser" parameterType="User">
+    <update id="updateUser" parameterType="cl.pkto.common.ms.domain.User">
         update users
-        set nick = #{nick}
-        ,friendCode = #{friendCode}
+        <trim prefix="set" suffixOverrides=",">
+            <if test="friendCode != null">
+              friendCode = #{friendCode}
+            </if>
+            <if test="nick != null">
+              nick = #{nick}
+            </if>
+            <if test="email != null">
+              email = #{email}
+            </if>
+            <if test="password != null">
+              password = #{password}
+            </if>
+            <if test="enabled != null">
+              enabled = #{enabled}
+            </if>
+            <if test="lastPasswordResetDate != null">
+              lastPasswordResetDate = #{lastPasswordResetDate}}
+            </if>
+        </trim>
         where id = #{id}
     </update>
 
@@ -48,4 +86,17 @@
         delete from users
         where id = #{id}
     </delete>
+
+    <select id="findUserByEmail" resultMap="UserResultMap" parameterType="java.lang.String">
+      select
+        id
+        ,nick
+        ,friendCode
+        ,email
+        ,password
+        ,enabled
+        ,lastPasswordResetDate
+      from users
+      where email = #{email}
+    </select>
 </mapper>

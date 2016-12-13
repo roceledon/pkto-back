@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cl.pkto.mapper.AuthorityMapper">
+
+    <resultMap id="AuthorityResultMap" type="cl.pkto.common.ms.domain.Authority">
+        <result column="id" property="id" />
+        <result column="name" property="name" />
+    </resultMap>
+
+    <select id="getAllAuthority" resultMap="AuthorityResultMap">
+        select
+          id
+          ,name
+        from authoritys
+    </select>
+
+    <select id="getAuthorityById" resultMap="AuthorityResultMap" parameterType="java.lang.Long">
+        select
+          id
+          ,name
+        from authoritys
+        where id = #{id}
+    </select>
+
+    <insert id="saveAuthority" parameterType="cl.pkto.common.ms.domain.Authority" useGeneratedKeys="true" keyProperty="id">
+        insert into authoritys(
+          name
+        ) values(
+          #{name}
+        )
+    </insert>
+
+    <update id="updateAuthority" parameterType="cl.pkto.common.ms.domain.Authority">
+        update authoritys
+        <trim prefix="set">
+            <if test="name != null">
+                name = #{name}
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteAuthority" parameterType="java.lang.Long">
+        delete from authoritys
+        where id = #{id}
+    </delete>
+
+    <select id="findAuthoritysByUserId" resultMap="AuthorityResultMap" parameterType="java.lang.Long">
+        select
+          a.id
+          ,a.name
+        from authoritys a
+        inner join users_authoritys ua on ua.authorityId = a.id
+        where ua.userId = #{id}
+    </select>
+</mapper>

@@ -1,5 +1,6 @@
 package cl.pkto.common.ms.controller;
 
+import cl.pkto.common.ms.controller.iface.ICrud;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
