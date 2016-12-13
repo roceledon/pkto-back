@@ -1,6 +1,7 @@
 package cl.pkto.core.business;
 
 import cl.pkto.common.ms.domain.User;
+import cl.pkto.core.business.base.BaseBusiness;
 import cl.pkto.core.persistence.dao.UserDao;
 import cl.pkto.core.persistence.factory.AppFactory;
 
@@ -9,41 +10,41 @@ import java.util.List;
 /**
  * Created by Bennu on 27-11-2016.
  */
-public class UserBusiness {
+public class UserBusiness implements BaseBusiness<User> {
     private static UserBusiness instance = new UserBusiness();
 
     public static UserBusiness getInstance() {
         return instance;
     }
 
-    //user method
-    public User getUserById(Long id) {
-        UserDao userDao = AppFactory.getUserDao();
+    private static final UserDao userDao = AppFactory.getUserDao();
+
+    @Override
+    public User getById(Long id) {
         return userDao.getById(id);
     }
 
-    public List<User> getUserAll() {
-        UserDao userDao = AppFactory.getUserDao();
+    @Override
+    public List<User> getAll() {
         return userDao.getAll();
     }
 
-    public User saveUser(User user) {
-        UserDao userDao = AppFactory.getUserDao();
+    @Override
+    public User save(User user) {
         return userDao.save(user);
     }
 
-    public void updateUser(User user){
-        UserDao userDao = AppFactory.getUserDao();
+    @Override
+    public void update(User user){
         userDao.update(user);
     }
 
-    public void deleteUser(Long id) {
-        UserDao userDao = AppFactory.getUserDao();
+    @Override
+    public void delete(Long id) {
         userDao.delete(id);
     }
 
-    public User findUserLoginByEmail(String email){
-        UserDao userDao = AppFactory.getUserDao();
-        return userDao.findUserLoginByEmail(email);
+    public User findByEmail(String email){
+        return userDao.findByEmail(email);
     }
 }

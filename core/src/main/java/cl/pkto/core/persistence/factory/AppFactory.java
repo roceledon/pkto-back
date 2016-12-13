@@ -1,5 +1,6 @@
 package cl.pkto.core.persistence.factory;
 
+import cl.pkto.core.persistence.dao.AuthorityDao;
 import cl.pkto.core.persistence.dao.UserDao;
 
 /**
@@ -9,4 +10,5 @@ public class AppFactory {
     public static UserDao getUserDao() {
         return new UserDao();
     }
+    public static AuthorityDao getAuthorityDao() { return new AuthorityDao(); }
 }

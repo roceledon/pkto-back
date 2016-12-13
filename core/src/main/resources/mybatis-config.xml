@@ -42,5 +42,6 @@
     </environments>
     <mappers>
         <mapper resource="cl/pkto/mapper/UserMapper.xml"/>
+        <mapper resource="cl/pkto/mapper/AuthorityMapper.xml"/>
     </mappers>
 </configuration>

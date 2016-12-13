@@ -1,67 +1,68 @@
 package cl.pkto.core.persistence.dao;
 
-import cl.pkto.common.ms.domain.User;
+import cl.pkto.common.ms.domain.Authority;
 import cl.pkto.core.persistence.dao.base.BaseDao;
-import cl.pkto.core.persistence.mapper.UserMapper;
+import cl.pkto.core.persistence.mapper.AuthorityMapper;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 /**
- * Created by Bennu on 28-11-2016.
+ * Created by Bennu on 06-12-2016.
  */
 @Component
-public class UserDao extends BaseDao implements UserMapper {
+public class AuthorityDao extends BaseDao implements AuthorityMapper {
     private SqlSession session;
 
     @Override
-    public List<User> getAll() {
-        List<User> list = null;
+    public List<Authority> getAll() {
+        List<Authority> authority = null;
         session = openSession();
 
         try {
-            list = session.selectList("getAllUser");
+            authority = session.selectList("getAllAuthority");
         } finally {
             session.close();
         }
 
-        return list;
+        return authority;
     }
 
     @Override
-    public User getById(Long id) {
-        User user = null;
+    public Authority getById(Long id) {
+        Authority authority = null;
         session = openSession();
 
         try {
-            user = session.selectOne("getUserById",id);
+            authority = session.selectOne("getAuthorityById", id);
         } finally {
             session.close();
         }
 
-        return user;
+        return authority;
     }
 
     @Override
-    public User save(User user) {
+    public Authority save(Authority authority) {
         session = openSession();
 
         try {
-            session.insert("saveUser", user);
+            session.insert("saveAuthority", authority);
         } finally {
             session.commit();
             session.close();
         }
 
-        return user;
+        return authority;
     }
 
     @Override
-    public void update(User user) {
+    public void update(Authority obj) {
         session = openSession();
+
         try {
-            session.update("updateUser", user);
+            session.update("updateAuthority", obj);
         } finally {
             session.commit();
             session.close();
@@ -71,26 +72,25 @@ public class UserDao extends BaseDao implements UserMapper {
     @Override
     public void delete(Long id) {
         session = openSession();
+
         try {
-            session.delete("deleteUser",id);
+            session.delete("deleteAuthority", id);
         } finally {
             session.commit();
             session.close();
         }
     }
 
-    @Override
-    public User findByEmail(String email) {
-        User account = null;
-
+    public List<Authority> findByUserId(Long id){
+        List<Authority> authority = null;
         session = openSession();
+
         try {
-            account = session.selectOne("findUserByEmail",email);
+            authority = session.selectList("findAuthoritysByUserId",id);
         } finally {
-            session.commit();
             session.close();
         }
 
-        return account;
+        return authority;
     }
 }

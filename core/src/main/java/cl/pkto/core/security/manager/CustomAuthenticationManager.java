@@ -1,7 +1,8 @@
 package cl.pkto.core.security.manager;
 
+import cl.pkto.common.ms.domain.Authority;
 import cl.pkto.common.ms.domain.User;
-import cl.pkto.common.ms.enums.AuthorityEnum;
+import cl.pkto.core.business.AuthorityBusiness;
 import cl.pkto.core.business.UserBusiness;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -26,7 +27,7 @@ public class CustomAuthenticationManager implements AuthenticationManager {
 
         UserBusiness userBusiness = UserBusiness.getInstance();
 
-        User user = userBusiness.findUserLoginByEmail(email);
+        User user = userBusiness.findByEmail(email);
 
         if (user == null) {
             throw new BadCredentialsException("1000");
@@ -38,9 +39,12 @@ public class CustomAuthenticationManager implements AuthenticationManager {
             throw new BadCredentialsException("1000");
         }
 
-        //TODO: Implementar Authority Bussiness
+        List<Authority> authority = AuthorityBusiness.getInstance().findByUserId(user.getId());
         List<GrantedAuthority> grantedAuths = new ArrayList<>();
-        grantedAuths.add(new SimpleGrantedAuthority(AuthorityEnum.ROLE_USER.getName()));
+
+        for(Authority auth : authority){
+            grantedAuths.add(new SimpleGrantedAuthority(auth.getName()));
+        }
 
         return new UsernamePasswordAuthenticationToken(email, password, grantedAuths);
     }

@@ -25,7 +25,7 @@ public class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdap
     @Bean
     public CustomUserDetailsService userDetailsService() {
         return email -> {
-            User user = UserBusiness.getInstance().findUserLoginByEmail(email);
+            User user = UserBusiness.getInstance().findByEmail(email);
             if(user != null) {
                 return new JwtUser(user.getId(), user.getEmail(), user.getPassword(), AuthorityUtils.createAuthorityList("USER"), user.getEnabled(), user.getLastPasswordResetDate());
             } else {
