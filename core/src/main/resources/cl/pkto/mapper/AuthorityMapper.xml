@@ -52,7 +52,7 @@
           a.id
           ,a.name
         from authoritys a
-        inner join users_authoritys ua on a.userId = ua.id
-        where a.userId = #{id}
+        inner join users_authoritys ua on ua.authorityId = a.id
+        where ua.userId = #{id}
     </select>
 </mapper>
