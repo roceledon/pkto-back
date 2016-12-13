@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cl.pkto.mapper.AuthorityMapper">
 
-    <resultMap id="AuthorityResultMap" type="Authority">
+    <resultMap id="AuthorityResultMap" type="cl.pkto.common.ms.domain.Authority">
         <result column="id" property="id" />
         <result column="name" property="name" />
     </resultMap>
@@ -24,7 +24,7 @@
         where id = #{id}
     </select>
 
-    <insert id="saveAuthority" parameterType="Authority" useGeneratedKeys="true" keyProperty="id">
+    <insert id="saveAuthority" parameterType="cl.pkto.common.ms.domain.Authority" useGeneratedKeys="true" keyProperty="id">
         insert into authoritys(
           name
         ) values(
@@ -32,7 +32,7 @@
         )
     </insert>
 
-    <update id="updateAuthority" parameterType="Authority">
+    <update id="updateAuthority" parameterType="cl.pkto.common.ms.domain.Authority">
         update authoritys
         <trim prefix="set">
             <if test="name != null">

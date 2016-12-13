@@ -8,7 +8,7 @@ services:
 #    volumes:
 #   - mysql-data: /var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: "4iFBkLer9LQyXnfNkgOD"
+      MYSQL_ROOT_PASSWORD: "s1TgPwOIHenYMOsR5Myk"
       MYSQL_DATABASE: "pkmn_tournament"
       MYSQL_USER: "iUxOIr4dZluh"
       MYSQL_PASSWORD: "s1TgPwOIHenYMOsR5Myk"
